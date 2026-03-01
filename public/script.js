@@ -1,8 +1,17 @@
-const produtos = [];
+let produtos = [];
+const STORAGE_KEY = "produtos:storage";
 
 const pMensagem = document.getElementById("mensagem");
 const produtoForm = document.getElementById("produto-form");
 const produtosTable = document.getElementById("produtos-table");
+
+function buscarProdutos() {
+  if (localStorage.getItem(STORAGE_KEY) == null) {
+    return [];
+  }
+
+  return JSON.parse(localStorage.getItem(STORAGE_KEY));
+}
 
 function mostrarMensagem(text, type) {
   pMensagem.innerText = text;
@@ -62,8 +71,17 @@ produtoForm.addEventListener("submit", (event) => {
   produto.categoria = produto.categoria === "" ? null : produto.categoria;
 
   produtos.push(produto);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(produtos));
+
   adicionarProdutoTabela(produto);
   mostrarMensagem("Produto cadastrado com sucesso.", "success");
 
   produtoForm.reset();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  produtos = buscarProdutos();
+  produtos.forEach(adicionarProdutoTabela);
+
+  // produtos.forEach((produto) => adicionarProdutoTabela(produto));
 });
