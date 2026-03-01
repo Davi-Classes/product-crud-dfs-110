@@ -1,0 +1,20 @@
+#produto-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  width: 300px;
+}
+
+#produtos-table {
+  width: 100%;
+  max-width: 800px;
+}
+
+#produtos-table,
+#produtos-table th,
+#produtos-table td {
+  text-align: center;
+  border: 1px solid;
+  border-collapse: collapse;
+}
