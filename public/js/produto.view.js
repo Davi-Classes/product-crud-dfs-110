@@ -1,4 +1,6 @@
 // View - Responsável por Renderizar os elementos na Interface
+import { criarIcone } from "./utils/icons.js";
+
 export const produtoForm = document.getElementById("produto-form");
 
 export function mostrarMensagem(text, type) {
@@ -15,7 +17,7 @@ export function mostrarMensagem(text, type) {
   }).showToast();
 }
 
-export function adicionarProdutoTabela(produto) {
+export function adicionarProdutoTabela(produto, onExcluirProduto) {
   const produtosTable = document.getElementById("produtos-table");
   const tableData = produtosTable.querySelector("tbody");
 
@@ -36,4 +38,28 @@ export function adicionarProdutoTabela(produto) {
   const categoryCell = document.createElement("td");
   categoryCell.innerText = produto.categoria;
   tableRow.appendChild(categoryCell);
+
+  const actionsCell = document.createElement("td");
+
+  const deleteButton = document.createElement("button");
+
+  deleteButton.addEventListener("click", () => {
+    const excluir = confirm(
+      `Tem certeza que deseja excluir o produto ${produto.nome}?`,
+    );
+
+    if (excluir) {
+      onExcluirProduto(produto.id);
+      tableRow.remove();
+      mostrarMensagem("Produto excluído com sucesso.", "success");
+    }
+  });
+
+  deleteButton.classList.add("delete-button");
+  actionsCell.appendChild(deleteButton);
+
+  const trashIcon = criarIcone("trash-outline");
+  deleteButton.appendChild(trashIcon);
+
+  tableRow.appendChild(actionsCell);
 }

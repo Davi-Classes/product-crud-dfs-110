@@ -4,7 +4,11 @@ import {
   mostrarMensagem,
   adicionarProdutoTabela,
 } from "./produto.view.js";
-import { buscarProdutos, salvarProduto } from "./produto.model.js";
+import {
+  buscarProdutos,
+  salvarProduto,
+  excluirProduto,
+} from "./produto.model.js";
 
 produtoForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -35,7 +39,7 @@ produtoForm.addEventListener("submit", (event) => {
   produto.categoria = produto.categoria === "" ? null : produto.categoria;
 
   salvarProduto(produto);
-  adicionarProdutoTabela(produto);
+  adicionarProdutoTabela(produto, excluirProduto);
 
   mostrarMensagem("Produto cadastrado com sucesso.", "success");
   produtoForm.reset();
@@ -43,7 +47,8 @@ produtoForm.addEventListener("submit", (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const produtos = buscarProdutos();
-  produtos.forEach(adicionarProdutoTabela);
 
-  // produtos.forEach((produto) => adicionarProdutoTabela(produto));
+  produtos.forEach((produto) =>
+    adicionarProdutoTabela(produto, excluirProduto),
+  );
 });

@@ -11,6 +11,15 @@ export function buscarProdutos() {
 
 export function salvarProduto(produto) {
   const produtos = buscarProdutos();
+
+  produto.id = crypto.randomUUID();
   produtos.push(produto);
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(produtos));
+}
+
+export function excluirProduto(id) {
+  const produtos = buscarProdutos();
+  const novosProdutos = produtos.filter((produto) => produto.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(novosProdutos));
 }

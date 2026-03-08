@@ -11,7 +11,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -23,7 +23,8 @@ body {
   margin: 0 auto;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: var(--text-main);
   font-weight: 700;
 }
@@ -33,7 +34,7 @@ h1, h2 {
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -55,7 +56,8 @@ label {
   color: var(--text-muted);
 }
 
-input, select {
+input,
+select {
   padding: 0.6rem;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -79,14 +81,6 @@ button[type="submit"]:hover {
   background-color: var(--primary-hover);
 }
 
-/* --- Mensagem de Feedback --- */
-#mensagem {
-  font-weight: 500;
-  color: var(--success);
-  margin: 1rem 0;
-  height: 1.2em;
-}
-
 /* --- Tabela --- */
 .table-container {
   overflow-x: auto;
@@ -98,7 +92,7 @@ button[type="submit"]:hover {
   background: var(--card-bg);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #produtos-table th {
@@ -114,6 +108,22 @@ button[type="submit"]:hover {
 #produtos-table td {
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
+}
+
+#produtos-table td .delete-button
+ {
+  color: white;
+  border: none;
+  background: red;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px;
+  border-radius: 4px;
+
+  cursor: pointer;
 }
 
 #produtos-table tr:last-child td {
